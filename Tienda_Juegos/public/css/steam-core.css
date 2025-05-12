@@ -1,0 +1,28 @@
+:root {
+    --steam-dark: #171a21;
+    --steam-blue: #1b2838;
+    --steam-accent: #66c0f4;
+    --steam-text: #c6d4df;
+    --steam-discount-bg: #4c6b22;
+    --steam-discount-text: #beee11;
+}
+
+body {
+    background-color: var(--steam-dark);
+    color: white;
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+}
+
+/* Utilidades de color */
+.text-steam-accent { color: var(--steam-accent); }
+.bg-steam-blue { background-color: var(--steam-blue); }
+
+a {
+    color: var(--steam-accent);
+    text-decoration: none;
+}
+
+a:hover {
+    color: #8cd5ff;
+}

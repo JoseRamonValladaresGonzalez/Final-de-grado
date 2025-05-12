@@ -1,0 +1,418 @@
+:root {
+    --steam-dark: #171a21;
+    --steam-blue: #1b2838;
+    --steam-accent: #66c0f4;
+}
+
+/* Body y contenedor global */
+body {
+    background-color: var(--steam-dark);
+    color: white;
+}
+.min-h-screen.bg-gray-100 {
+    background-color: var(--steam-dark) !important;
+}
+
+/* Navbar */
+.navbar-steam {
+    background-color: var(--steam-blue) !important;
+}
+.navbar-steam .nav-link {
+    color: white !important;
+}
+
+/* Carrusel */
+.steam-carousel .carousel-item img {
+    height: 400px;
+    object-fit: cover;
+}
+.steam-carousel-caption {
+    background: rgba(0,0,0,0.5);
+    padding: 1rem;
+}
+
+/* Tarjeta de juego */
+.game-card {
+    background-color: var(--steam-blue);
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+.game-card:hover {
+    transform: translateY(-5px);
+}
+.game-image-container {
+    overflow: hidden;
+    height: 160px;
+}
+.game-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.game-card-body .game-title {
+    color: #c6d4df;
+    font-size: 1.25rem;
+}
+.game-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    min-width: 120px;
+}
+.original-price {
+    font-size: 0.8rem;
+    text-decoration: line-through;
+    color: #8899a6;
+}
+.final-price {
+    color: #beee11;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+.discount-badge {
+    background: #4c6b22;
+    color: #beee11;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+/* Botón “Steam” */
+.btn-steam {
+    background-color: var(--steam-accent);
+    color: black;
+    border: none;
+}
+.btn-steam:hover {
+    background-color: #4fb0e0;
+    color: black;
+}
+
+:root {
+    --steam-dark: #171a21;
+    --steam-blue: #1b2838;
+    --steam-accent: #66c0f4;
+}
+
+body {
+    background-color: var(--steam-dark);
+    color: white;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.steam-carousel .carousel-item img {
+    height: 400px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.game-card {
+    background-color: var(--steam-blue);
+    transition: transform 0.3s;
+    border-radius: 5px;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+.discount-badge {
+    background: #4c6b22;
+    color: #beee11;
+    padding: 2px 8px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.game-image-container {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.game-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.game-title {
+    color: #c6d4df;
+    font-size: 1.25rem;
+}
+
+.game-pricing {
+    min-width: 150px;
+}
+
+.original-price {
+    font-size: 0.8rem;
+    color: gray;
+    text-decoration: line-through;
+}
+
+.final-price {
+    color: #beee11;
+    font-size: 1.2rem;
+}
+
+.btn-steam {
+    display: inline-block;
+    background-color: var(--steam-accent);
+    color: black;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+/* === Game Header === */
+.game-header {
+    background: linear-gradient(135deg, #1b2838 0%, #2a3f5a 100%);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+}
+
+/* Título grande con sombra */
+.game-header .game-title {
+    color: var(--steam-accent);
+    font-size: 2.5rem;
+    margin: 0 0 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+/* === Grid puro en lugar de Bootstrap === */
+.detail-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+.detail-main {
+    flex: 1 1 60%;
+    min-width: 300px;
+}
+.detail-sidebar {
+    flex: 1 1 35%;
+    min-width: 250px;
+    position: sticky;
+    top: 20px;
+}
+
+/* === Carrusel de capturas === */
+.screenshots-carousel {
+    position: relative;
+}
+.screenshots-carousel .game-screenshot {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 3px;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* Controles simples (si implementas JS) */
+.screenshots-carousel .control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.4);
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.screenshots-carousel .control.prev { left: 1rem; }
+.screenshots-carousel .control.next { right: 1rem; }
+
+/* === Buy Box === */
+.buy-box {
+    background: linear-gradient(90deg, #1b2838 0%, #2a3f5a 100%);
+    border-radius: 4px;
+    padding: 1.5rem;
+}
+.buy-box .discount-badge {
+    background-color: #66c0f420;
+    color: var(--steam-accent);
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+.buy-box .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.buy-box .original-price {
+    text-decoration: line-through;
+    color: #8899a6;
+}
+.buy-box .current-price {
+    font-size: 2rem;
+    color: var(--steam-accent);
+}
+.buy-box .btn-steam {
+    width: 100%;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+.buy-box .btn-steam:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px #66c0f460;
+}
+
+/* === Descripción y Features === */
+.description-section h3 {
+    margin-bottom: 1rem;
+    color: #c6d4df;
+}
+.description-section p {
+    line-height: 1.6;
+}
+.features-list {
+    list-style: none;
+    padding: 0;
+}
+.features-list li {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+.features-list li::before {
+    content: "✔";
+    color: var(--steam-accent);
+    margin-right: 0.5rem;
+}
+
+/* === Tags === */
+.tags {
+    margin: 1rem 0;
+}
+.game-tag {
+    background-color: #66c0f420;
+    color: var(--steam-accent);
+    border-radius: 3px;
+    padding: 0.25rem 0.5rem;
+    margin: 0.25rem;
+    display: inline-block;
+    font-size: 0.9rem;
+}
+
+/* === Requisitos del Sistema === */
+.system-requirements {
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 4px;
+    padding: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+.req-block {
+    flex: 1 1 45%;
+    min-width: 200px;
+}
+.requirement-title {
+    color: var(--steam-accent);
+    border-bottom: 1px solid rgba(102,192,244,0.3);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+.req-block dl {
+    margin: 0;
+}
+.req-block dt {
+    font-weight: bold;
+}
+.req-block dd {
+    margin: 0 0 0.5rem 1rem;
+}
+/* Carrito: cada item */
+.cart-item {
+    background: linear-gradient(90deg, #1b2838 0%, #2a3f5a 100%);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Resumen del carrito */
+.cart-summary {
+    background: var(--steam-blue);
+    border-radius: 4px;
+    padding: 1.5rem;
+    position: sticky;
+    top: 20px;
+}
+
+/* Imagen pequeña de portada */
+.game-cover-sm {
+    width: 180px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+/* Control de cantidad si lo usas */
+.quantity-control {
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 3px;
+    padding: 0.25rem 0.5rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Botones steam */
+.btn-steam {
+    background: linear-gradient(90deg, #66c0f4 0%, #4799d1 100%);
+    color: black;
+    font-weight: bold;
+    padding: 0.75rem 2rem;
+    border: none;
+    transition: all 0.3s ease;
+}
+.btn-steam:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(102,192,244,0.375);
+}
+
+/* Precio destacado */
+.price-highlight {
+    color: #beee11;
+    font-size: 1.25rem;
+}
+
+/* Enlace de eliminar */
+.remove-link {
+    color: #a34d4d;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+}
+.remove-link:hover {
+    color: #ff5555;
+}
+.game-image-container {
+    width: 264px; /* 220px + 20% */
+    height: 132px; /* 110px + 20% */
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.game-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
