@@ -45,7 +45,7 @@
     <!-- Título y descripción -->
     <div class="game-content flex-grow-1 ms-4">
         <h3 class="game-title mb-1">{{ $game->title }}</h3>
-        <p class="game-description text-muted mb-0">
+        <p class="game-description  mb-0">
             {{ Str::limit($game->description, 100) }}
         </p>
     </div>
