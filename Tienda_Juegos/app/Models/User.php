@@ -47,7 +47,8 @@ class User extends Authenticatable  implements MustVerifyEmail
     }
 public function cart()
 {
-    return $this->belongsToMany(Game::class, 'cart_items')
-        ->withPivot('quantity', 'created_at', 'updated_at');
+    return $this->belongsToMany(Game::class, 'carts') 
+        ->withPivot(['id', 'quantity', 'session_id'])
+        ->withTimestamps();
 }
 }

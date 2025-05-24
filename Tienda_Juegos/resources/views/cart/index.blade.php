@@ -11,9 +11,9 @@
             <div class="cart-item text-white mb-4">
                 <div class="d-flex align-items-center">
                     <!-- Portada pequeña -->
-                    <img 
-                        src="{{ asset('storage/'.$item->main_image) }}" 
-                        class="game-cover-sm me-4" 
+                    <img
+                        src="{{ asset('storage/'.$item->main_image) }}"
+                        class="game-cover-sm me-4"
                         alt="{{ $item->title }}">
 
                     <!-- Título + controles -->
@@ -21,18 +21,18 @@
                         <h4 class="mb-1">{{ $item->title }}</h4>
                         <div class="d-flex align-items-center gap-3">
                             <!-- Control de cantidad -->
-                            <form action="{{ route('cart.decrement', $item) }}" method="POST" class="d-inline">
+                            <form action="{{ route('cart.decrement', $item->pivot->id) }}" method="POST" class="d-inline">
                                 @csrf @method('PATCH')
                                 <button class="btn btn-sm text-white">−</button>
                             </form>
-                            <span>{{ $item->quantity }}</span>
-                            <form action="{{ route('cart.increment', $item) }}" method="POST" class="d-inline">
+                            <span>{{ $item->pivot->quantity }}</span>
+                            <form action="{{ route('cart.increment', $item->pivot->id) }}" method="POST" class="d-inline">
                                 @csrf @method('PATCH')
                                 <button class="btn btn-sm text-white">+</button>
                             </form>
 
                             <!-- Eliminar -->
-                            <form action="{{ route('cart.remove', $item) }}" method="POST">
+                            <form action="{{ route('cart.remove', $item->pivot->id) }}" method="POST">
                                 @csrf @method('DELETE')
                                 <button type="submit" class="btn btn-sm remove-link p-0">Eliminar</button>
                             </form>
@@ -41,17 +41,24 @@
 
                     <!-- Precios -->
                     <div class="text-end">
+                        @php
+                            $itemPrice = $item->current_price * $item->pivot->quantity;
+                            $itemDiscount = ($item->original_price - $item->current_price) * $item->pivot->quantity;
+                        @endphp
+                        
                         @if($item->discount_percent > 0)
                         <div class="text-muted text-decoration-line-through">
-                            ${{ number_format($item->original_price, 2) }}
+                            ${{ number_format($item->original_price * $item->pivot->quantity, 2) }}
                         </div>
                         @endif
+
                         <div class="price-highlight">
-                            ${{ number_format($item->current_price, 2) }}
+                            ${{ number_format($itemPrice, 2) }}
                         </div>
-                        @if($item->discount_percent > 0)
+                        
+                        @if($itemDiscount > 0)
                         <div class="text-success">
-                            Ahorras ${{ number_format(($item->original_price - $item->current_price) * $item->quantity, 2) }}
+                            Ahorras ${{ number_format($itemDiscount, 2) }}
                         </div>
                         @endif
                     </div>
@@ -65,9 +72,15 @@
         <!-- Resumen del Carrito -->
         <div class="col-md-4">
             @php
-                $subtotal = $cartItems->sum(fn($i) => $i->current_price * $i->quantity);
-                $totalDiscount = $cartItems->sum(fn($i) => ($i->original_price - $i->current_price) * $i->quantity);
-                $total = $subtotal;
+            $subtotal = $cartItems->sum(function($item) {
+                return $item->current_price * $item->pivot->quantity;
+            });
+            
+            $totalDiscount = $cartItems->sum(function($item) {
+                return ($item->original_price - $item->current_price) * $item->pivot->quantity;
+            });
+            
+            $total = $subtotal;
             @endphp
 
             <div class="cart-summary text-white">
@@ -92,13 +105,12 @@
                     <span class="price-highlight">${{ number_format($total, 2) }}</span>
                 </div>
 
-                <form action="{{ route('checkout') }}" method="POST">
+                <form action="{{ route('stripe.checkout') }}" method="POST">
                     @csrf
-                    <button class="btn btn-steam w-100 mb-3">
-                        Continuar con la compra
-                    </button>
+                    <button type="submit" class="btn btn-primary">Pagar con Stripe</button>
                 </form>
-                <button class="btn btn-outline-light w-100 mb-3">
+                
+                <button class="btn btn-outline-light w-100 mb-3 mt-2">
                     Regalar estos items
                 </button>
 

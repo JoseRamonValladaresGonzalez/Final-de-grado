@@ -40,7 +40,7 @@ class Game extends Model
         return $this->belongsTo(Publisher::class);
     }
 
-    public function features()
+    public function game_features()
     {
         return $this->hasMany(GameFeature::class);
     }

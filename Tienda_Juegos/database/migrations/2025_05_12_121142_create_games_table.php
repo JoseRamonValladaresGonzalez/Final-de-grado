@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('developer_id')->constrained();
             $table->foreignId('publisher_id')->constrained();
             $table->date('release_date');
-            $table->string('main_image');
+            $table->string('main_image')->nullable()->change();
             $table->decimal('original_price', 10, 2);
             $table->decimal('current_price', 10, 2);
             $table->integer('discount_percent')->default(0);

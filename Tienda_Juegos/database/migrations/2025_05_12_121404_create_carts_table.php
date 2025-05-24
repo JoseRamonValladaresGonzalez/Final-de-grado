@@ -9,15 +9,19 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
-    {
-        Schema::create('carts', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->nullable()->constrained();
-            $table->string('session_id')->nullable();
-            $table->timestamps();
-        });
-    }
+ public function up()
+{
+    Schema::create('carts', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');
+        $table->foreignId('game_id')->constrained()->onDelete('cascade');
+        $table->integer('quantity')->default(1);
+        $table->timestamps();
+        
+        // Evita duplicados de un mismo juego en el carrito
+        $table->unique(['user_id', 'game_id']);
+    });
+}
     /**
      * Reverse the migrations.
      */

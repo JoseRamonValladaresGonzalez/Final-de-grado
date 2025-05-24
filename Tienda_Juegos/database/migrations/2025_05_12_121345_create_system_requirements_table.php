@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('processor');
             $table->string('memory');
             $table->string('graphics');
-            $table->string('directx');
+            $table->string('directx')->nullable();
             $table->string('storage');
             $table->timestamps();
         });

@@ -40,33 +40,37 @@ class CartController extends Controller
             ->with('success', 'Juego añadido al carrito');
     }
 
-    public function increment(Game $game)
-    {
-        auth()->user()->cart()->updateExistingPivot($game->id, [
-            'quantity' => \DB::raw('quantity + 1')
+   public function increment($pivotId)
+{
+    auth()->user()->cart()->updateExistingPivot($pivotId, [
+        'quantity' => \DB::raw('quantity + 1')
+    ]);
+
+    return back()->with('success', 'Cantidad actualizada');
+}
+
+public function decrement($pivotId)
+{
+    $cartItem = auth()->user()->cart()->where('carts.id', $pivotId)->first();
+    
+    if(!$cartItem) {
+        return back()->with('error', 'Item no encontrado');
+    }
+
+    if($cartItem->pivot->quantity > 1) {
+        auth()->user()->cart()->updateExistingPivot($cartItem->id, [
+            'quantity' => \DB::raw('quantity - 1')
         ]);
-
-        return back()->with('success', 'Cantidad actualizada');
+    } else {
+        auth()->user()->cart()->detach($cartItem->id);
     }
 
-    public function decrement(Game $game)
-    {
-        $currentQuantity = auth()->user()->cart()->find($game->id)->pivot->quantity;
+    return back()->with('success', 'Cantidad actualizada');
+}
 
-        if($currentQuantity > 1) {
-            auth()->user()->cart()->updateExistingPivot($game->id, [
-                'quantity' => \DB::raw('quantity - 1')
-            ]);
-        } else {
-            auth()->user()->cart()->detach($game->id);
-        }
-
-        return back()->with('success', 'Cantidad actualizada');
-    }
-
-    public function destroy(Game $game)
-    {
-        auth()->user()->cart()->detach($game->id);
-        return back()->with('success', 'Juego eliminado del carrito');
-    }
+public function destroy($pivotId)
+{
+    auth()->user()->cart()->detach($pivotId);
+    return back()->with('success', 'Juego eliminado del carrito');
+}
 }
