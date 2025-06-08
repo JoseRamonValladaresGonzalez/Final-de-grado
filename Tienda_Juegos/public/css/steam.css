@@ -420,3 +420,41 @@ body {
     height: 100%;
     object-fit: cover;
 }
+
+/* Estilo para la paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.pagination .page-item {
+    margin: 0 0.5rem;
+}
+
+.pagination .page-link {
+    background-color: var(--steam-blue);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.pagination .page-link:hover {
+    background-color: var(--steam-accent);
+    transform: scale(1.05);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--steam-accent);
+    color: black;
+    font-weight: bold;
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: gray;
+    pointer-events: none;
+}

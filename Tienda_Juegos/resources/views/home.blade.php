@@ -73,8 +73,8 @@
     </div>
 
     <!-- Paginación -->
-    <div class="d-flex justify-content-center mt-4">
-        {{ $games->links() }}
+    <div class="d-flex justify-content-center mt-1">
+       {{ $games->links('pagination::bootstrap-5') }}
     </div>
 </div>
 @endsection
