@@ -20,17 +20,6 @@
                     <div class="flex-grow-1">
                         <h4 class="mb-1">{{ $item->title }}</h4>
                         <div class="d-flex align-items-center gap-3">
-                            <!-- Control de cantidad -->
-                            <form action="{{ route('cart.decrement', $item->pivot->id) }}" method="POST" class="d-inline">
-                                @csrf @method('PATCH')
-                                <button class="btn btn-sm text-white">−</button>
-                            </form>
-                            <span>{{ $item->pivot->quantity }}</span>
-                            <form action="{{ route('cart.increment', $item->pivot->id) }}" method="POST" class="d-inline">
-                                @csrf @method('PATCH')
-                                <button class="btn btn-sm text-white">+</button>
-                            </form>
-
                             <!-- Eliminar -->
                             <form action="{{ route('cart.remove', $item->pivot->id) }}" method="POST">
                                 @csrf @method('DELETE')
@@ -109,10 +98,6 @@
                     @csrf
                     <button type="submit" class="btn btn-primary">Pagar con Stripe</button>
                 </form>
-                
-                <button class="btn btn-outline-light w-100 mb-3 mt-2">
-                    Regalar estos items
-                </button>
 
                 <div class="mt-4 text-center">
                     <a href="{{ route('home') }}" class="text-muted text-decoration-none">

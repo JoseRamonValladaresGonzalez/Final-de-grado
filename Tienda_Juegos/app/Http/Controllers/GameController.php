@@ -12,7 +12,7 @@ class GameController extends Controller
         $game->load([
             'developer',
             'publisher',
-            'features',
+            'game_features',
             'screenshots',
             'tags',
             'requirements'

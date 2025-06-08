@@ -23,7 +23,8 @@ class Game extends Model
         'main_image',
         'original_price',
         'current_price',
-        'discount_percent'
+        'discount_percent',
+        'category_id'
     ];
 
     protected $casts = [
@@ -73,5 +74,9 @@ public function users()
 {
     return $this->belongsToMany(User::class, 'cart_items')
         ->withPivot('quantity', 'created_at', 'updated_at');
+}
+public function category()
+{
+    return $this->belongsTo(Category::class);
 }
 }

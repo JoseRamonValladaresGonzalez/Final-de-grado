@@ -11,37 +11,25 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\adminController;
 use App\Http\Controllers\Admin\DeveloperController;
 use App\Http\Controllers\Admin\PublisherController;
-
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*Route::get('/', function () {
     return view('welcome');
 });*/
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 
-Route::get('/', function () {
-    $featuredGames = Game::with(['developer', 'publisher'])
-        ->where('discount_percent', '>', 20)
-        ->latest()
-        ->take(3)
-        ->get();
-
-    $games = Game::with(['developer', 'publisher'])
-        ->latest()
-        ->paginate(6);
-
-    return view('home', compact('featuredGames', 'games'));
-})->name('home');
-
+Route::get('/', [HomeController::class, 'index'])
+     ->name('home');
+Route::get('/category/{id}', [HomeController::class,'index'])
+     ->name('home.category');
 Route::resource('games', GameController::class)->only(['show']);
 
 Route::middleware('auth')->group(function () {
@@ -50,6 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::patch('/cart/increment/{pivot_id}', [CartController::class, 'increment'])->name('cart.increment');
     Route::patch('/cart/decrement/{pivot_id}', [CartController::class, 'decrement'])->name('cart.decrement');
     Route::delete('/cart/remove/{pivot_id}', [CartController::class, 'destroy'])->name('cart.remove');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/historial', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/historial/{order}', [OrderController::class, 'show'])->name('orders.show');
 });
 
 Route::post('/checkout', [CartController::class, 'checkout'])
@@ -87,5 +80,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('games/{game}', [adminController::class, 'destroy'])->name('games.destroy');
         Route::resource('developers', DeveloperController::class);
         Route::resource('publishers', PublisherController::class);
+        Route::resource('users', UserController::class);
+        Route::resource('categories', CategoryController::class)->except(['show']);
+
     });
 });

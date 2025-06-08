@@ -70,7 +70,18 @@ public function decrement($pivotId)
 
 public function destroy($pivotId)
 {
-    auth()->user()->cart()->detach($pivotId);
-    return back()->with('success', 'Juego eliminado del carrito');
+    // 1) Obtenemos la fila del carrito (la relación) filtrando por el id de pivote
+    $cartItem = auth()->user()->cart()
+                    ->wherePivot('id', $pivotId)
+                    ->first();
+
+    // 2) Si existe, eliminamos la relación con el game_id correcto
+    if ($cartItem) {
+        auth()->user()->cart()->detach($cartItem->id);
+        return back()->with('success', 'Juego eliminado del carrito');
+    }
+
+    // 3) Si no lo encontramos, devolvemos error
+    return back()->with('error', 'No se encontró el item para eliminar');
 }
 }

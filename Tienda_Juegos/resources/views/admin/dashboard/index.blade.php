@@ -1,21 +1,20 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-<div class="card bg-primary text-white mb-4">
-    <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <h5>Juegos</h5>
-                <h2>{{ $gameCount }}</h2> <!-- Usar la variable pasada -->
-            </div>
-            <i class="fas fa-gamepad fa-3x"></i>
-        </div>
-    </div>
-    <div class="card-footer d-flex align-items-center justify-content-between">
-        <a class="small text-white stretched-link" href="{{ route('admin.games.index') }}">
-            Gestionar Juegos
+<div class="cart-summary mb-4 text-white">
+    <div class="d-flex gap-3 justify-content-center">
+        <a href="{{ route('admin.games.index') }}" class="btn-steam">
+            <i class="fas fa-cogs me-1"></i> Gestionar Juegos
         </a>
-        <div class="small text-white"><i class="fas fa-arrow-right"></i></div>
+        <a href="{{ route('admin.developers.index') }}" class="btn-steam">
+            <i class="fas fa-cogs me-1"></i> Gestionar Desarrolladores
+        </a>
+        <a href="{{ route('admin.publishers.index') }}" class="btn-steam">
+            <i class="fas fa-cogs me-1"></i> Gestionar Publishers
+        </a>
+        <a href="{{ route('admin.users.index') }}" class="btn-steam">
+            <i class="fas fa-cogs me-1"></i> Gestionar Usuarios
+        </a>
     </div>
 </div>
 @endsection
