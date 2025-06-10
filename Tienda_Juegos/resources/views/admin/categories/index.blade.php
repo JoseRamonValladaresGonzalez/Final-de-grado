@@ -49,9 +49,10 @@
                 </table>
             </div>
 
-            <div class="d-flex justify-content-center mt-3">
-                {{ $categories->links() }}
-            </div>
+    <!-- Paginación -->
+    <div class="d-flex justify-content-center mt-1">
+       {{ $categories->links('pagination::bootstrap-5') }}
+    </div>
         </div>
     </div>
 </div>

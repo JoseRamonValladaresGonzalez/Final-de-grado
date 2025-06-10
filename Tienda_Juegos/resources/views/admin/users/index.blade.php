@@ -56,10 +56,9 @@
                 </table>
             </div>
 
-            {{-- Paginación --}}
-            <div class="d-flex justify-content-center mt-3">
-                {{ $users->links() }}
-            </div>
+    <div class="d-flex justify-content-center mt-1">
+       {{ $users->links('pagination::bootstrap-5') }}
+    </div>
         </div>
     </div>
 </div>

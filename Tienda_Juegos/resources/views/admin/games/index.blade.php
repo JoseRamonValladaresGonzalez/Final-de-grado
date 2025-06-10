@@ -28,34 +28,34 @@
                             <td style="width: 100px;">
                                 @if($game->main_image)
                                 <img src="{{ asset('storage/'.$game->main_image) }}"
-                                     alt="{{ $game->title }}"
-                                     class="img-fluid rounded"
-                                     style="width: 80px; height: 45px; object-fit: cover;">
+                                    alt="{{ $game->title }}"
+                                    class="img-fluid rounded"
+                                    style="width: 80px; height: 45px; object-fit: cover;">
                                 @endif
                             </td>
                             <td>{{ $game->title }}</td>
                             <td>€{{ number_format($game->current_price, 2) }}</td>
                             <td>
                                 @if($game->discount_percent > 0)
-                                    <span class="badge discount-badge">-{{ $game->discount_percent }}%</span>
+                                <span class="badge discount-badge">-{{ $game->discount_percent }}%</span>
                                 @else
-                                    &mdash;
+                                &mdash;
                                 @endif
                             </td>
                             <td class="text-center" style="width: 120px;">
                                 <a href="{{ route('admin.games.edit', $game) }}"
-                                   class="btn-steam btn-sm me-1" title="Editar">
+                                    class="btn-steam btn-sm me-1" title="Editar">
                                     <i class="fas fa-edit me-1"></i>Editar
                                 </a>
                                 <form action="{{ route('admin.games.destroy', $game) }}"
-                                      method="POST"
-                                      class="d-inline"
-                                      onsubmit="return confirm('¿Eliminar este juego permanentemente?');">
+                                    method="POST"
+                                    class="d-inline"
+                                    onsubmit="return confirm('¿Eliminar este juego permanentemente?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
-                                            class="btn btn-outline-light btn-sm"
-                                            title="Eliminar">
+                                        class="btn btn-outline-light btn-sm"
+                                        title="Eliminar">
                                         <i class="fas fa-trash me-1"></i>Eliminar
                                     </button>
                                 </form>
@@ -70,9 +70,9 @@
                 </table>
             </div>
 
-            {{-- Paginación --}}
-            <div class="d-flex justify-content-center mt-3">
-                {{ $games->links() }}
+            <!-- Paginación -->
+            <div class="d-flex justify-content-center mt-1">
+                {{ $games->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>
