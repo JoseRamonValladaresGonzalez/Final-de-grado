@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <title>{{ config('app.name', 'Laravel') }} Admin</title>
+    <title>Admin</title> <!-- Cambiado aquí -->
 
     <!-- Bootstrap 5 desde CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -19,7 +19,7 @@
     <nav class="navbar navbar-expand-lg navbar-steam">
         <div class="container-fluid px-4">
             <a class="navbar-brand text-white" href="{{ route('admin.games.index') }}">
-                {{ config('app.name', 'Laravel') }} Admin
+            Admin
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#adminNavbar" aria-controls="adminNavbar"
